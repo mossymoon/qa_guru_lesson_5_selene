@@ -6,9 +6,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 @pytest.fixture(scope='function', autouse=True)
 def browser_window():
-    browser.config.base_url = 'https://demoqa.com/automation-practice-form'
+    browser.config.base_url = 'https://demoqa.com/'
     driver_options = webdriver.ChromeOptions()
-    driver_options.add_argument('--headless')
+    # driver_options.add_argument('--headless')
     browser.config.type_by_js = True
     browser.config.driver_options = driver_options
     browser.config.driver = webdriver.Chrome(

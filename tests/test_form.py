@@ -5,21 +5,26 @@ from selene.support.shared.jquery_style import s
 
 def test_dificult_form():
     picture = '/Users/stepa/PycharmProjects/qa_guru_lesson_5_selene/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg'
-    browser.open('/')
+    browser.open('automation-practice-form')
 
     # заполнение формы
 
     s('#adplus-anchor').perform(command.js.remove)
     s('#fixedban').perform(command.js.remove)
 
-    browser.element('[id=firstName]').should(be.blank).press_enter().type('Ivan')
-    browser.element('[id=lastName]').should(be.blank).press_enter().type('Ivanov')
-    browser.element('[id=userEmail]').should(be.blank).press_enter().type('ivan@co.com')
+    browser.element('[id=firstName]').should(be.blank).type('Ivan')
+    browser.element('[id=lastName]').should(be.blank).type('Ivanov')
+    browser.element('[id=userEmail]').should(be.blank).type('ivan@co.com')
     browser.element('.custom-control-label').click()
     browser.element('[id=userNumber]').should(be.blank).type('9999999999')
-    browser.element('[id=dateOfBirthInput]').clear()
-    browser.element('[id=dateOfBirthInput]').type('28 Dec 1989').press_enter()
-    browser.element('[id=subjectsInput]').type('maths').press_enter()
+
+    browser.element('[id="dateOfBirthInput"]').click()
+    browser.element('#dateOfBirthInput').click()
+    browser.element('.react-datepicker__year-select [value="1989"]').click()
+    browser.element('.react-datepicker__month-select [value="12"]').click()
+    browser.element('.react-datepicker__day--028').click()
+
+    browser.element('[id="subjectsInput"]').type("Maths").press_enter()
     browser.element('[for="hobbies-checkbox-1"]').click()
     browser.element('input[type=file]').type(picture)
     browser.element('[id=currentAddress]').type('Москва, ул. Тверская, дом 1')
